@@ -29,12 +29,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let bulletCategory:UInt32 = 0x1 << 0
 
     
-//    @objc func addAlien() {
-//        aliens = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: aliens) as! [String]
-//
-//        gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
-//    }
-    
     override func didMove(to view: SKView) {
         starfield = SKEmitterNode(fileNamed: "Starfield")
         starfield.position = CGPoint(x: 0, y: 1472)
@@ -86,12 +80,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let animDuration:TimeInterval = 6
             
             var actions = [SKAction]()
-            actions.append(SKAction.move(to: CGPoint(x: pos, y: -300), duration: animDuration))
+            actions.append(SKAction.move(to: CGPoint(x: pos, y: -600), duration: animDuration))
             actions.append(SKAction.removeFromParent())
             
             alien.run(SKAction.sequence(actions))
             
         }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        fireBullet()
+    }
+    
+    func fireBullet() {
+        self.run(SKAction.playSoundFileNamed("explode.mp3", waitForCompletion: false))
+        
+        let bullet = SKSpriteNode(imageNamed: "torpedo")
+        bullet.position = player.position
+        bullet.position.y += 5
+        
+        bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width / 2)
+        bullet.physicsBody?.isDynamic = true
+        
+        bullet.physicsBody?.categoryBitMask = bulletCategory
+        bullet.physicsBody?.contactTestBitMask = alienCategory
+        bullet.physicsBody?.collisionBitMask = 0
+        bullet.physicsBody?.usesPreciseCollisionDetection = true
+        
+        self.addChild(bullet)
+        
+        let animDuration:TimeInterval = 0.3
+        
+        var actions = [SKAction]()
+        actions.append(SKAction.move(to: CGPoint(x: player.position.x, y: 300), duration: animDuration))
+        actions.append(SKAction.removeFromParent())
+        
+        bullet.run(SKAction.sequence(actions))
+
+    }
     
     override func update(_ currentTime: TimeInterval) {
             // Called before each frame is rendered
