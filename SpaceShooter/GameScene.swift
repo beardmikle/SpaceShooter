@@ -8,6 +8,9 @@
 import SpriteKit
 import GameplayKit
 
+
+
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var starfield: SKEmitterNode!
@@ -24,8 +27,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     let alienCategory:UInt32 = 0x1 << 1
     let bulletCategory:UInt32 = 0x1 << 0
+
     
-    
+//    @objc func addAlien() {
+//        aliens = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: aliens) as! [String]
+//
+//        gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
+//    }
     
     override func didMove(to view: SKView) {
         starfield = SKEmitterNode(fileNamed: "Starfield")
@@ -37,6 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player = SKSpriteNode(imageNamed: "shuttle")
         player.position = CGPoint(x: 0, y: -400)
+        player.setScale(1.4)
         
         self.addChild(player)
         
@@ -53,15 +62,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreLabel)
         
         gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
+    }
+    
         
-        
-        @objc func addAlien() {
+    @objc func addAlien() {
             aliens = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: aliens) as! [String]
-            
+        
             let alien = SKSpriteNode(imageNamed: aliens[0])
-            let randomPos = GKRandomDistribution(lowestValue: 20, highestValue: 350)
+            let randomPos = GKRandomDistribution(lowestValue: -300, highestValue: 300)
             let pos = CGFloat(randomPos.nextInt())
-            alien.position = CGPoint(x: pos, y: -800)
+            alien.position = CGPoint(x: pos, y: 800)
+            alien.setScale(1.4)
             
             alien.physicsBody = SKPhysicsBody(rectangleOf: alien.size)
             alien.physicsBody?.isDynamic = true
@@ -75,17 +86,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let animDuration:TimeInterval = 6
             
             var actions = [SKAction]()
-            actions.append(SKAction.move(to: CGPoint(x: pos, y: -alien.size.height), duration: animDuration))
+            actions.append(SKAction.move(to: CGPoint(x: pos, y: -300), duration: animDuration))
             actions.append(SKAction.removeFromParent())
             
             alien.run(SKAction.sequence(actions))
             
         }
-    }
-    
-    
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+            // Called before each frame is rendered
+        }
+    
     }
-}
+    
+    
+    
+
+
