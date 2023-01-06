@@ -31,8 +31,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         starfield = SKEmitterNode(fileNamed: "Starfield")
-        starfield.position = CGPoint(x: 0, y: 1472)
-        starfield.advanceSimulationTime(10)
+        starfield.position = CGPoint(x: 0, y: 1500)
+        starfield.advanceSimulationTime(12)
         self.addChild(starfield)
         
         starfield.zPosition = -1
@@ -100,6 +100,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width / 2)
         bullet.physicsBody?.isDynamic = true
+        bullet.setScale(1.2)
         
         bullet.physicsBody?.categoryBitMask = bulletCategory
         bullet.physicsBody?.contactTestBitMask = alienCategory
