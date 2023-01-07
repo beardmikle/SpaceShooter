@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F80570BD2968B7A500551A56 /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = F80570BC2968B7A500551A56 /* MainMenu.sks */; };
+		F80570BF2968C04100551A56 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80570BE2968C04100551A56 /* MainMenu.swift */; };
 		F8A91D882966943F0082D0C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A91D872966943F0082D0C6 /* AppDelegate.swift */; };
 		F8A91D8A2966943F0082D0C6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F8A91D892966943F0082D0C6 /* GameScene.sks */; };
 		F8A91D8C2966943F0082D0C6 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = F8A91D8B2966943F0082D0C6 /* Actions.sks */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F80570BC2968B7A500551A56 /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
+		F80570BE2968C04100551A56 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		F8A91D842966943F0082D0C6 /* SpaceShooter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceShooter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8A91D872966943F0082D0C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8A91D892966943F0082D0C6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 				F8A91D8D2966943F0082D0C6 /* GameScene.swift */,
 				F8A91D8F2966943F0082D0C6 /* GameViewController.swift */,
 				F8A91D912966943F0082D0C6 /* Main.storyboard */,
+				F80570BC2968B7A500551A56 /* MainMenu.sks */,
+				F80570BE2968C04100551A56 /* MainMenu.swift */,
 				F8A91D9E296695960082D0C6 /* bullet.mp3 */,
 				F8A91D9F296695960082D0C6 /* explode.mp3 */,
 				F8A91D94296694400082D0C6 /* Assets.xcassets */,
@@ -144,6 +150,7 @@
 				F8A91D932966943F0082D0C6 /* Main.storyboard in Resources */,
 				F8A91DA6296696620082D0C6 /* explode.sks in Resources */,
 				F8A91D8A2966943F0082D0C6 /* GameScene.sks in Resources */,
+				F80570BD2968B7A500551A56 /* MainMenu.sks in Resources */,
 				F8A91DA1296695960082D0C6 /* explode.mp3 in Resources */,
 				F8A91D95296694400082D0C6 /* Assets.xcassets in Resources */,
 				F8A91D98296694400082D0C6 /* LaunchScreen.storyboard in Resources */,
@@ -163,6 +170,7 @@
 				F8A91D8E2966943F0082D0C6 /* GameScene.swift in Sources */,
 				F8A91D902966943F0082D0C6 /* GameViewController.swift in Sources */,
 				F8A91D882966943F0082D0C6 /* AppDelegate.swift in Sources */,
+				F80570BF2968C04100551A56 /* MainMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +317,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L2Z9M7D6Y3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -337,6 +346,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L2Z9M7D6Y3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
