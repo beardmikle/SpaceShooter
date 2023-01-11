@@ -22,15 +22,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameTimer: Timer!
     var aliens = ["alien", "alien2", "alien3", "alien4", "alien5"]
-
+    
     let alienCategory:UInt32 = 0x1 << 1
     let bulletCategory:UInt32 = 0x1 << 0
     
     let motionManager = CMMotionManager()
     var xAccelerate: CGFloat = 0
     
+    var livesArray:[SKSpriteNode]!
     
     override func didMove(to view: SKView) {
+        
+        addLives()
+        
         starfield = SKEmitterNode(fileNamed: "Starfield")
         starfield.position = CGPoint(x: 0, y: 1500)
         starfield.advanceSimulationTime(12)
@@ -40,7 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player = SKSpriteNode(imageNamed: "shuttle")
         player.position = CGPoint(x: UIScreen.main.bounds.width / 2, y: 80)
-//        player.setScale(6)
+        //        player.setScale(6)
         
         self.addChild(player)
         
@@ -66,13 +70,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         motionManager.accelerometerUpdateInterval = 0.2
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data:CMAccelerometerData?, error:Error?) in
-                    if let accelerometerData = data {
-                        let acceleration = accelerometerData.acceleration
-                        self.xAccelerate = CGFloat(acceleration.x) * 0.75 + self.xAccelerate * 0.25
+            if let accelerometerData = data {
+                let acceleration = accelerometerData.acceleration
+                self.xAccelerate = CGFloat(acceleration.x) * 0.75 + self.xAccelerate * 0.25
             }
         }
-        
+         
+
     }
+    
+    func addLives() {
+        livesArray = [SKSpriteNode]()
+
+        for live in 1...3 {
+            let liveNode = SKSpriteNode(imageNamed: "shuttle")
+            liveNode.size = CGSize(width: 44, height: 44)
+            liveNode.position = CGPoint(x: self.frame.size.width - CGFloat(4 - live) * liveNode.size.width, y: frame.size.height - 80)
+            self.addChild(liveNode)
+            liveNode.zPosition = 5
+            livesArray.append(liveNode)
+
+        }
+    }
+
+    
     
     override func didSimulatePhysics() {
         player.position.x += xAccelerate * 50
@@ -118,13 +139,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         score += 5
     }
     
+    
+    
     @objc func addAlien() {
             aliens = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: aliens) as! [String]
         
             let alien = SKSpriteNode(imageNamed: aliens[0])
-        let randomPos = GKRandomDistribution(lowestValue: 20, highestValue: Int(UIScreen.main.bounds.size.width - 20))
+            let randomPos = GKRandomDistribution(lowestValue: 20, highestValue: Int(UIScreen.main.bounds.size.width - 20))
             let pos = CGFloat(randomPos.nextInt())
-        alien.position = CGPoint(x: pos, y: UIScreen.main.bounds.size.height + alien.size.height)
+            alien.position = CGPoint(x: pos, y: UIScreen.main.bounds.size.height + alien.size.height)
 //            alien.setScale(2)
             
             alien.physicsBody = SKPhysicsBody(rectangleOf: alien.size)
@@ -139,7 +162,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let animDuration:TimeInterval = 6
             
             var actions = [SKAction]()
-        actions.append(SKAction.move(to: CGPoint(x: pos, y: 0 - alien.size.height), duration: animDuration))
+            actions.append(SKAction.move(to: CGPoint(x: pos, y: 0 - alien.size.height), duration: animDuration))
+        
+        actions.append(SKAction.run {
+            self.run(SKAction.playSoundFileNamed("loose.mp3", waitForCompletion: false))
+            
+            if self.livesArray.count > 0 {
+                let liveNode = self.livesArray.first
+                liveNode!.removeFromParent()
+                self.livesArray.removeFirst()
+                
+                if self.livesArray.count == 0 {
+                    let transition = SKTransition.flipHorizontal(withDuration: 0.5)
+                    let gameOver = SKScene(fileNamed: "GameOverScene") as! GameOverScene
+                    gameOver.scaleMode = .aspectFill
+                    gameOver.score = self.score
+                    self.view?.presentScene(gameOver, transition: transition)
+                    
+                }
+            }
+        })
+        
             actions.append(SKAction.removeFromParent())
             
             alien.run(SKAction.sequence(actions))
@@ -182,7 +225,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Called before each frame is rendered
         }
     
-    }
+}
     
     
     

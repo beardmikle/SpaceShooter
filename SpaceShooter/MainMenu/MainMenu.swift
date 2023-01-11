@@ -16,16 +16,16 @@ class MainMenu: SKScene {
     var labelLevelNode: SKLabelNode!
     
     override func didMove(to view: SKView) {
-        starfield = self.childNode(withName: "starfield_anim") as! SKEmitterNode
+        starfield = self.childNode(withName: "starfield_anim") as? SKEmitterNode
         starfield.advanceSimulationTime(10)
         
-        newGameButtonNode = self.childNode(withName: "newGameButton") as! SKSpriteNode
+        newGameButtonNode = self.childNode(withName: "newGameButton") as? SKSpriteNode
         newGameButtonNode.texture = SKTexture(imageNamed: "StartGame")
         
-        levelButtonNode = self.childNode(withName: "levelButton") as! SKSpriteNode
+        levelButtonNode = self.childNode(withName: "levelButton") as? SKSpriteNode
         levelButtonNode.texture = SKTexture(imageNamed: "levels")
         
-        labelLevelNode = self.childNode(withName: "labelLevelButton") as! SKLabelNode
+        labelLevelNode = self.childNode(withName: "labelLevelButton") as? SKLabelNode
         
         let userLevel = UserDefaults.standard
         
