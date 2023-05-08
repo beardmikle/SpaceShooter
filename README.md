@@ -9,14 +9,10 @@ The spaceship is controlled by tilting the phone to the sides (left and right), 
 - adding sound effects
 - using the accelerometer
 
-
 Some screenshots:
 -----------------
-![Simulator Screen Shot - iPhone 14 Plus - 2023-01-12 at 16 38 19](https://user-images.githubusercontent.com/11380960/212082417-f688a9ad-20ea-4e39-957b-2e27fe89a2ef.png)
-
-![Simulator Screen Shot - iPhone 14 Plus - 2023-01-12 at 16 38 48](https://user-images.githubusercontent.com/11380960/212082435-c0eace14-ab44-40e6-a534-755421cce9aa.png)
-
-![Simulator Screen Shot - iPhone 14 Plus - 2023-01-12 at 16 38 53](https://user-images.githubusercontent.com/11380960/212082442-7576df1b-cbf4-42d4-a179-e08a1546850d.png)
+![3](https://user-images.githubusercontent.com/11380960/236716500-f40c1cce-2b34-4a5d-b81a-8d7a82170ddb.png) ![1](https://user-images.githubusercontent.com/11380960/236716480-412e33ac-07a2-487b-b604-1c36031594ab.png)
+![2](https://user-images.githubusercontent.com/11380960/236716491-5b5860a2-1e18-4664-b7a6-0e9fca39484f.png)
 
 A small video of the gameplay:
 -----------------
